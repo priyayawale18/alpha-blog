@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'blog#index'
   get 'about', to:'blog#about'
+   #create all routes
+  resources:articles
+
 
 end

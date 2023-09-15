@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+.link-edit{
+	text-decoration: none;
+}
+.link-item{
+	text-decoration: none;
+}
+.btn-danger1{
+	width:130px;
+	margin-left:26px;
+}
+

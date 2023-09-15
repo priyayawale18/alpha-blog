@@ -1,0 +1,35 @@
+
+
+<div class="container-fluid">
+	<div class="row">
+	  <div class="col-md-4"></div>
+	  <div class="col-md-4"><br>
+	  	<h2><center>Create New Article</center></h2><br>
+	  	<div class="card">
+	  		<div class="card-body">
+	  			<%= form_with model: @article do |f| %>
+
+<p>
+	<%= f.label :title %><br>
+	<%= f.text_field :title, class: "form-control"  %>
+</p>
+
+<p>
+	<%= f.label :description%><br>
+	<%= f.text_area :description, class: "form-control"  %>
+</p>
+
+
+<div>
+	<%= f.submit 'Add Article', class: "btn btn-danger" %>
+</div>
+
+
+<% end %>
+	  		</div>
+	  	</div>
+
+	  </div>
+	  <div class="col-md-4"></div>
+    </div>
+</div>	

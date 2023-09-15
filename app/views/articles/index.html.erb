@@ -1,0 +1,37 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3"></div>
+
+	<div class="col-md-6"><br>
+		<h2><center>Article List</center></h2><br>
+       <div class="card">
+       	 
+       	 <table class="table table-striped">
+       	 	<tr>
+       	 		<th>Title</th>
+			    <th>Description</th>
+			    <th>Action</th>
+			    <th>Delete Action</th>
+       	 	</tr>
+
+       	 	<% @article.each do |article| %>	
+		    <tr>
+			   <td><%= link_to article.title, article %></td>
+			   <td><%= article.description %></td>
+			   <td><%= link_to 'Update Article', edit_article_path(article) , class: "btn btn-success" %></td>
+
+			   <td><%= link_to "Delete", article_path(article),method: :delete, class: "btn btn-danger" %>
+                </td>
+	        </tr>	
+	  <% end %>  
+
+       	 </table>
+
+       	 <%= link_to 'Add Article',new_article_path, class: "btn btn-primary btn-danger1" %>
+         
+      </div>
+	</div>
+	<div class="col-md-3"></div>
+	</div>
+
+</div>
