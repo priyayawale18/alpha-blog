@@ -1,6 +1,6 @@
-
-
+<%= stylesheet_link_tag('articleIndex')%>
 <div class="container-fluid">
+	<%= render '/shared/errors' %>
 	<div class="row">
 	  <div class="col-md-4"></div>
 	  <div class="col-md-4"><br>
@@ -22,6 +22,7 @@
 
 <div>
 	<%= f.submit 'Add Article', class: "btn btn-danger" %>
+	<%= link_to 'Return To Articles list', articles_path, class: "btn btn-success" %>
 </div>
 
 

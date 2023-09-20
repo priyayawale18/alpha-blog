@@ -3,6 +3,7 @@
   <head>
     <title>AlphaBlog</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+   <%= stylesheet_link_tag('articleIndex')%>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,12 +13,38 @@
     <!-- Include Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 
-  <!-- Optional: Include Bootstrap JavaScript and Popper.js (for Bootstrap's JavaScript components) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  
   </head>
+  
 
   <body>
-    <%= yield %>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <%= link_to 'Alpha-Blog', root_path,class:"nav-link navbar-brand active" %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+
+      <%= link_to 'Articles list', articles_path, class: "nav-link active" %>
+
+
+        <%= link_to 'Add Article',new_article_path, class: "nav-link active" %>
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+ <%= yield %>
+ <% render 'layouts/footer' %>
+
+    <!-- Optional: Include Bootstrap JavaScript and Popper.js (for Bootstrap's JavaScript components) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   </body>
 </html>

@@ -1,0 +1,12 @@
+body{
+	background-color:rgb(245,245,245);
+}
+.card{
+	padding:10px;
+}
+#title{
+	color:green
+}
+.text-success{
+	text-decoration:none;
+}
