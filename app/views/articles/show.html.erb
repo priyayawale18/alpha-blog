@@ -2,10 +2,15 @@
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-6"><br>
+			<h2>Article Information</h2><hr>
 			<div class="card">
+				<div class= "card-header" >
+				  By <%= @article.user_log&.username %>
+				</div>
 				<div class="card-body">
+ 
+					
 
-					<h2>Article Information</h2><hr>
 
 <p><b>Title:</b><%= @article.title %></p>
 <p><b>Description:</b><%= @article.description %></p>
