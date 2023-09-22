@@ -1,5 +1,11 @@
 <%= stylesheet_link_tag('articleIndex')%>
 
+<% if flash[:success] %>
+      <div class="alert alert-success">
+        <span><%= flash[:success] %></span>
+      </div>
+<% end %>
+
 <div id="page-content">
 	<div class="row">
 		<div class="col-md-2"></div>
@@ -24,7 +30,7 @@
           <small>Created <%=  time_ago_in_words(article.created_at) %> ago,              
           edited <%= time_ago_in_words(article.updated_at) %> ago
       </small>
-   </div><br><br>
+   </div>
 <% end %>
 
 
@@ -32,3 +38,4 @@
 	<div class="col-md-2"></div>
 	</div>
 </div>
+

@@ -13,7 +13,9 @@ class ArticlesController < ApplicationController
 
 	def create
         @article = Article.new(article_params)
+        @article.user_log = UserLog.first
         if @article.save
+        	flash[:success] = "Article Add successful!"
         	redirect_to articles_path
         end
 	end
@@ -37,6 +39,6 @@ class ArticlesController < ApplicationController
 
     private
 	def article_params
-		params.require(:article).permit(:title,:description)
+		params.require(:article).permit(:title,:description, :customer_id)
 	end
 end
