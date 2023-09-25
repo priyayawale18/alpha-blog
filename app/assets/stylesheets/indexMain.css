@@ -1,11 +1,10 @@
 #card{
-	background-image: url("index1.jpg");
+	background-image: url("index5.avif");
 	 background-repeat: no-repeat;
 	 height: 500px; 
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover; 
-    box-shadow:0px 0px 8px black;
     border-radius:6px;
 }
 button{

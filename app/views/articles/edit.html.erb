@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4"><br>
-      <h2><center>Edit Article</center></h2><br>
+      <h2><center>Edit Article</center></h2><hr>
       <div class="card">
         <div class="card-body">
           <%= form_with model: @article do |form| %>
@@ -18,8 +18,8 @@
    </p>
    
 
-  <%= form.submit 'Update Article', class: "btn btn-danger" %>
-  <%= link_to 'Return To Articles list', articles_path, class: "btn btn-success" %>
+  <%= form.submit 'Update Article', class: "btn btn-outline-danger" %>
+  <%= link_to 'Return To Articles list', articles_path, class: "btn btn-outline-success" %>
 
 </div>
     
@@ -31,4 +31,6 @@
     </div>
     <div class="col-md-4"></div>
     </div>
+    
+  
 </div>  

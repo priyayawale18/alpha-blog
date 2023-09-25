@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get 'about', to:'blog#about'
    #create all routes
   resources:articles
+  get 'signup', to: 'user_logs#new'
+  post 'signup', to: 'user_logs#create' 
+  resources :users, except: [:new]
 
 
 end

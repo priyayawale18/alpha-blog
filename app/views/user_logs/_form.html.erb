@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag('articleIndex')%>
+ 
+<div class="container-fluid">
+	
+	<div class="row">
+	  <div class="col-md-4"></div>
+	  <div class="col-md-4"><br>
+	  	<h2><center>Sign Up </center></h2><hr>
+	  	<div class="card">
+	  		<div class="card-body">
+	  			<%= form_with model: @user_logs do |f| %>
+
+<div>
+	<%= f.label :username %><br>
+	<%= f.text_field :username, class: "form-control"  %>
+</p>
+
+<p>
+	<%= f.label :email %><br>
+	<%= f.email_field :email, class: "form-control"  %>
+</p>
+
+<p>
+	<%= f.label :password %><br>
+	<%= f.password_field :password, class: "form-control"  %>
+</p>
+
+
+<div>
+	<%= f.submit 'sign up', class: "btn btn-outline-info" %>
+    <%= link_to 'Return To Articles list', articles_path, class: "btn btn-outline-success" %>
+</div>
+
+
+<% end %>
+	  		</div>
+
+	  	</div>
+
+	  </div><br>
+
+	</div>
+	  <div class="col-md-4"></div>
+    </div>
+</div>	

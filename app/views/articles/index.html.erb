@@ -1,10 +1,17 @@
 <%= stylesheet_link_tag('articleIndex')%>
-
-<% if flash[:success] %>
-      <div class="alert alert-success">
-        <span><%= flash[:success] %></span>
-      </div>
-<% end %>
+<div class="container-fluid"><br>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-3"></div>
+  <div class="col-md-3"></div>
+  <div class="col-md-3">
+    <% if flash[:success] %>
+        <div class="alert alert-success">
+          <span><%= flash[:success] %></span>
+        </div>
+      <% end %>
+  </div>
+</div>
 
 <div id="page-content">
 	<div class="row">
@@ -39,3 +46,4 @@
 	</div>
 </div>
 
+</div>
