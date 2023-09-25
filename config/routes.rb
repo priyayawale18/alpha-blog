@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources:articles
   get 'signup', to: 'user_logs#new'
   post 'signup', to: 'user_logs#create' 
-  resources :users, except: [:new]
 
+  resources :user_logs
 
 end

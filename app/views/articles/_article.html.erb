@@ -1,0 +1,33 @@
+<%= stylesheet_link_tag('articleIndex')%>
+<div id="page-content">
+	<div class="row">
+		<div class="col-md-2"></div>
+
+	<div class="col-md-8"><br>
+<% @articles.each do |article| %>
+    <div class="card text-center">
+        <div class="card-header font-italic">
+          By <%= article.user_log&.username %>
+        </div>
+        <div class="card-body">
+         <p class="card-title"><%= link_to article.title, article, class: "text-success link-success"%></p>
+          <p class="card-text"><%= truncate(article.description,length:50) %></p>
+            <%= link_to 'Edit', edit_article_path(article) , class: "btn btn-outline-info" %>
+            <%= link_to 'Delete', article_path(article),class: "btn btn-outline-danger" ,data: { turbo_method: :delete } %>
+
+        </div>
+
+        <div class="card-footer text-muted">
+          <small>Created <%=  time_ago_in_words(article.created_at) %> ago,              
+          edited <%= time_ago_in_words(article.updated_at) %> ago
+      </small>
+   </div>
+<% end %>
+
+
+	</div>
+	<div class="col-md-2"></div>
+	</div>
+</div>
+
+</div><br><br>
