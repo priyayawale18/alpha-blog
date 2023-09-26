@@ -1,0 +1,38 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <br><h2><center>Log IN</center></h2><hr>
+    </div>
+  </div>  
+<br>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <%= form_with(scope: :session, url: login_path, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :email%>
+            <%= f.email_field :email, class: "form-control", placeholder: "Enter your email address" %>
+        </div>
+<br>
+        <div class="form-group">
+          <%= f.label :password %>
+            <%= f.password_field :password, class: "form-control", placeholder: "Enter your password" %>
+        </div>
+<br>
+        <div>
+          <%= f.submit "Log in", class: "btn btn-outline-info" %>
+
+           <%= link_to 'Return To Articles list', articles_path, class: "btn btn-outline-success" %>
+        </div>
+
+      <% end %>
+    </div>
+    
+        </div>
+    </div>
+  </div>
+</div>

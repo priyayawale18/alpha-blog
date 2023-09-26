@@ -21,13 +21,15 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <%= link_to 'Alpha-Blog', root_path,class:"nav-link navbar-brand active" %>
+    <%= link_to 'ALPHA-BLOG', root_path,class:"nav-link navbar-brand active"   %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
+
+      <%= link_to "Bloggers", user_logs_path, class: "nav-link active" %>  
 
       <%= link_to 'Articles list', articles_path, class: "nav-link active" %>
 
@@ -38,8 +40,22 @@
       </div>
 
     </div>
-    <%= link_to 'Sign Up',signup_path, class: "btn btn-outline-danger" %> |
-    <%= link_to 'Sign In',new_article_path, class: "btn btn-outline-success" %>
+    
+    <% if logged_in? %>
+    <li>
+     <%= link_to current_user.username, user_log_path(current_user), style: "text-decoration:none; color:white;font-width:bold " %>
+   </li>|
+   <li>
+     <%= link_to 'Logout', logout_path, class: "btn btn-outline-danger", method: :delete %>
+   </li>
+   <% else %>
+   <li>
+    <%= link_to 'Log In',login_path, class: "btn btn-outline-success" %> 
+    </li>|
+    <li>
+    <%= link_to 'Sign Up',signup_path, class: "btn btn-outline-info" %> 
+    </li>|
+   <% end %>
   </div>
 </nav>
 

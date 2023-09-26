@@ -1,13 +1,14 @@
 <%= stylesheet_link_tag('articleIndex')%>
+<%= stylesheet_link_tag('custom')%>
 <div class="container-fluid"><br>
 <div class="row">
   <div class="col-md-3"></div>
   <div class="col-md-3"></div>
   <div class="col-md-3"></div>
   <div class="col-md-3">
-    <% if flash[:success] %>
+    <% if flash[:notice] %>
         <div class="alert alert-success">
-          <span><%= flash[:success] %></span>
+          <span><%= flash[:notice] %></span>
         </div>
       <% end %>
   </div>
@@ -20,10 +21,21 @@
 	<div class="col-md-8"><br>
 <h2><center>Articles List</center></h2><br>
 
-<% @article.each do |article| %>
+
+<div class="flickr_pagination md-4">
+    <%= will_paginate @articles, :container => false %>
+</div>
+
+<br>
+
+<%#= will_paginate @articles %>
+<% @articles.each do |article| %>
     <div class="card text-center">
         <div class="card-header font-italic">
-          By <%= article.user_log&.username %>
+          <% if article.user_log %>
+             by <%= link_to  article.user_log&.username, user_log_path(article.user_log) %>
+          <% end %>
+          <%#= article.user_log&.username %>
         </div>
         <div class="card-body">
          <p class="card-title"><%= link_to article.title, article, class: "text-success link-success"%></p>
@@ -47,3 +59,8 @@
 </div>
 
 </div>
+</div><br>
+<div class="flickr_pagination">
+    <%= will_paginate @articles, :container => false %>
+</div>
+<br>

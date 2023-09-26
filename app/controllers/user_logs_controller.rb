@@ -1,8 +1,13 @@
 class UserLogsController < ApplicationController
 
+
   def show
     @user_log = UserLog.find(params[:id])
-    @articles = @user_log.articles
+    @articles = @user_log.articles.paginate(:page => params[:page], :per_page => 5)
+  end
+
+  def index
+  	@user_log=UserLog.paginate(:page => params[:page], :per_page => 5)
   end
 
 
@@ -11,13 +16,14 @@ class UserLogsController < ApplicationController
 	end	
 
 	def edit
-		@user_log=UserLog.find(params[:id])
+		@user_log = UserLog.find_by(id: params[:id])
 	end	
     
     def update
-    	@user_log=UserLog.find(params[:id])
+    	@user_log = UserLog.find_by(id: params[:id])
     	if @user_log.update(user_params)
-           flash[:notice] = "Your acoount information was sucessfully update"
+           flash[:success] = "Your account information was sucessfully update"
+           redirect_to articles_path
     	else
     	  render 'edit'
     	end  	
@@ -37,7 +43,7 @@ class UserLogsController < ApplicationController
 
     
     def user_params
-    	params.require(:user_logs).permit(:username, :email, :password)
+    	params.require(:user_log).permit(:username, :email, :password)
     end
 	
 end
