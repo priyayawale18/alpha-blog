@@ -1,4 +1,8 @@
 class ArticlesController < ApplicationController
+
+before_action :require_same_user, only: [:edit, :update]
+
+
 	def show
 	   @article=Article.find(params[:id])
 	end
@@ -18,6 +22,8 @@ class ArticlesController < ApplicationController
         if @article.save
         	flash[:notice] = "Article Add successful!"
         	redirect_to articles_path
+        else
+          render 'new'	
         end
 	end
 
@@ -25,13 +31,16 @@ class ArticlesController < ApplicationController
 		@article = Article.find_by(id: params[:id])
 	end
 
+
 	def update
 		@article = Article.find_by(id: params[:id])
 		if @article.update(article_params)
 			flash[:notice] = "Article Updated successful!"
 			redirect_to articles_path
-		end
-	end
+		else
+          render 'edit'
+	  end
+	end  
 
 	def destroy
 		@article = Article.find(params[:id])
@@ -41,6 +50,18 @@ class ArticlesController < ApplicationController
 
     private
 	def article_params
-		params.require(:article).permit(:title,:description, :customer_id)
+		params.require(:article).permit(:title,:description, category_ids: [])
 	end
+
+ 	def require_same_user
+ 	 @article = Article.find(params[:id])
+     @user = UserLog.find(@article.user_log_id)
+     if current_user != @user && !current_user.admin?
+      flash[:success]= "You Can Only edit your own article"
+        redirect_to @user
+      end
+    end
+	
+
+
 end

@@ -16,9 +16,16 @@
     <%= form.label :description %><br>
     <%= form.text_area :description, class: "form-control" %>
    </p>
-   
 
-  <%= form.submit 'Update Article', class: "btn btn-outline-danger" %>
+    <p>         <%= form.label :Categories%><br>
+            <%= form.collection_select(:category_ids, Category.all, :id, :name,
+            { prompt: "Make your selection from the list below (can be empty)"}, { multiple: true, size: 3, class: "custom-select form-control" }) %>
+</p>
+    
+    
+
+
+  <%= form.submit 'Update Article', class: "btn btn-outline-info" %>
   <%= link_to 'Return To Articles list', articles_path, class: "btn btn-outline-success" %>
 
 </div>

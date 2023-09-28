@@ -7,6 +7,12 @@
 				<div class= "card-header" >
 				  By <%= @article.user_log&.username %>
 				  <%#= link_to_gravator_for(@article.user_log), user_logs_path(@article.user_log) %>
+
+                  <% if @article.categories.any? %>
+                      <div class="mt-2"><%= render @article.categories %></div> 
+                  <% end %>
+                 
+
 				</div>
 				<div class="card-body">
  
@@ -15,8 +21,9 @@
 
 <p><b>Title:</b><%= @article.title %></p>
 <p><b>Description:</b><%= @article.description %></p>
-<%= link_to 'Edit Article', edit_article_path(@article), class: "btn btn-danger" %>
-
+<% if logged_in? && ( @article.user_log == current_user || current_user.admin? ) %>
+<%= link_to 'Edit Article', edit_article_path(@article), class: "btn btn-info" %>
+<% end %>
 <%= link_to 'Return To Articles list', articles_path, class: "btn btn-success" %>
 
 

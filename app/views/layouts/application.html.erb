@@ -12,6 +12,9 @@
 
     <!-- Include Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
   
   </head>
@@ -19,9 +22,9 @@
 
   <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark", style="background-color:rgb(1, 15, 36);">
   <div class="container-fluid">
-    <%= link_to 'ALPHA-BLOG', root_path,class:"nav-link navbar-brand active"   %>
+    <%= link_to 'ALPHA-BLOG', root_path,class:"nav-link navbar-brand active" , style: " color:white; font-weight:bold " %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -29,24 +32,61 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
 
-      <%= link_to "Bloggers", user_logs_path, class: "nav-link active" %>  
+      <%= link_to "Bloggers", user_logs_path, class: "nav-link active", style: " color:white;" %>  
+       
+     <div class="dropdown">
+  <a class="nav-link dropdown-toggle active" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Articles
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <% if logged_in? %>
+      <%= link_to 'Create Article',new_article_path, class: "dropdown-item" %>
+    <% end %>
 
-      <%= link_to 'Articles list', articles_path, class: "nav-link active" %>
+    <%= link_to 'View Articles', articles_path, class: "dropdown-item" %>
+    
+  </div>
+</div>
+
+<div class="dropdown">
+  <a class="nav-link dropdown-toggle active" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Categories
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <% if logged_in? && current_user.admin? %>
+      <%= link_to 'Create New Category',new_category_path, class: "dropdown-item" %>
+    <% end %>
+
+    <%= link_to 'View Categories', categories_path, class: "dropdown-item" %>
+    
+  </div>
+</div>
+
+         <% if logged_in? %>
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle active" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= "(Admin)" if current_user.admin? %> Profile [<%= current_user.username %>]
+             </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+           <%= link_to 'View Your Profile',user_logs_path(current_user), class: "dropdown-item" %>
+
+           <%= link_to 'Edit Your Profile', edit_user_log_path(current_user), class: "dropdown-item" %>  
+
+           <%= button_to "Delete your profile",user_log_path(current_user), class: "dropdown-item text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+          </div>
+         </div>
+         <% end %>
 
 
-        <%= link_to 'Add Article',new_article_path, class: "nav-link active" %>
-
-        
+     
       </div>
 
+      
     </div>
     
     <% if logged_in? %>
-    <li>
-     <%= link_to current_user.username, user_log_path(current_user), style: "text-decoration:none; color:white;font-width:bold " %>
-   </li>|
    <li>
-     <%= link_to 'Logout', logout_path, class: "btn btn-outline-danger", method: :delete %>
+     <%= link_to 'Logout', logout_path, class: "btn btn-danger", method: :delete %>
    </li>
    <% else %>
    <li>
@@ -62,9 +102,7 @@
  <%= yield %>
  <% render 'layouts/footer' %>
 
-    <!-- Optional: Include Bootstrap JavaScript and Popper.js (for Bootstrap's JavaScript components) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+   
   </body>
 </html>
  

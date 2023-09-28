@@ -6,11 +6,12 @@
   <div class="col-md-3"></div>
   <div class="col-md-3"></div>
   <div class="col-md-3">
-    <% if flash[:notice] %>
+     <% if flash[:notice] %>
         <div class="alert alert-success">
           <span><%= flash[:notice] %></span>
         </div>
       <% end %>
+
   </div>
 </div>
 
@@ -35,14 +36,23 @@
           <% if article.user_log %>
              by <%= link_to  article.user_log&.username, user_log_path(article.user_log) %>
           <% end %>
+          <div >
+               <% if article.categories.any? %>
+                      <div class="mt-2"><%= render article.categories %></div> 
+                  <% end %>
+          </div>
           <%#= article.user_log&.username %>
         </div>
         <div class="card-body">
-         <p class="card-title"><%= link_to article.title, article, class: "text-success link-success"%></p>
+         <p class="card-title"><%= link_to article.title, article, class: "text-secondary link-success"%></p>
           <p class="card-text"><%= truncate(article.description,length:50) %></p>
-            <%= link_to 'Edit', edit_article_path(article) , class: "btn btn-outline-info" %>
-            <%= link_to 'Delete', article_path(article),class: "btn btn-outline-danger" ,data: { turbo_method: :delete } %>
+             <%= link_to 'View', article_path(article) , class: "btn btn-outline-success" %>
 
+            <% if logged_in? && ( article.user_log == current_user || current_user.admin?) %>
+
+              <%= link_to 'Edit', edit_article_path(article) , class: "btn btn-outline-info" %>
+             
+            <% end %>
         </div>
 
         <div class="card-footer text-muted">

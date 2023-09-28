@@ -1,0 +1,41 @@
+<%= stylesheet_link_tag('articleIndex')%>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<br><h2><center>Create a new Category</center></h2><hr>
+		</div>
+	</div>	
+
+	<div class="row">
+	  <div class="col-md-3"></div>
+	  <div class="col-md-6"><br>
+	  	<div class="card">
+	  		<div class="card-body">
+	  			<%= form_with model: @category do |f| %>
+
+<div>
+	<%= f.label :name, "Category name" %><br>
+	<%= f.text_field :name, class: "form-control",autocomplete: "off" %>
+</p>
+
+
+
+<div>
+	<%= f.submit class: "btn btn-outline-info" %>
+    <%= link_to 'Return To Articles list', articles_path, class: "btn btn-outline-success" %>
+</div>
+
+
+<% end %>
+	  		</div>
+
+	  	</div>
+
+	  </div><br>
+
+	</div>
+	  <div class="col-md-3"></div>
+    </div>
+</div>	
