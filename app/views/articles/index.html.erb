@@ -46,13 +46,17 @@
         <div class="card-body">
          <p class="card-title"><%= link_to article.title, article, class: "text-secondary link-success"%></p>
           <p class="card-text"><%= truncate(article.description,length:50) %></p>
-             <%= link_to 'View', article_path(article) , class: "btn btn-outline-success" %>
+          <div class="d-flex align-items-center justify-content-md-center">
+             <%= link_to 'View', article_path(article) , class: "btn btn-outline-success" %> &nbsp
 
             <% if logged_in? && ( article.user_log == current_user || current_user.admin?) %>
 
               <%= link_to 'Edit', edit_article_path(article) , class: "btn btn-outline-info" %>
-             
+
+              <%= button_to 'Delete', article_path(article),method: :delete, class:"btn btn-outline-danger ms-2" %>
+             </div>
             <% end %>
+
         </div>
 
         <div class="card-footer text-muted">
